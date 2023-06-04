@@ -35,6 +35,9 @@ public class Main {
         String data = getFileData("filename.txt");
 
         List<Character> chdata = convertToChar(data);
+        chdata.removeAll(Collections.singleton(','));
+        chdata.removeAll(Collections.singleton('['));
+        chdata.removeAll(Collections.singleton(']'));
         System.out.println(chdata);
         encrypt(chdata, "filename.txt");
 
@@ -71,6 +74,7 @@ public class Main {
         for (char ch: strData.toCharArray()) {
             charList.add(ch);
         }
+        System.out.println(charList);
 
         return charList;
     }
@@ -82,23 +86,20 @@ public class Main {
 
         int count = 0;
 
-        charArray.remove(Character.valueOf('['));
-        charArray.remove(Character.valueOf(']'));
-        charArray.remove(Character.valueOf(','));
 
         Object[] charToArray = charArray.toArray();
         String toStr = Arrays.toString(charToArray);
         char[] toCharAgain = toStr.toCharArray();
 
         for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
-            System.out.println(toCharAgain);
+            //System.out.println(toCharAgain);
             if(count >= 3) {
                 count = 0;
             }
 
             //System.out.println("count "+count);
             int curVal = toCharAgain[i];
-            System.out.println(curVal);
+            //System.out.println(curVal);
             toCharAgain[i] = (char) (curVal + key[count]);
             //System.out.println(key[count]);
         }
