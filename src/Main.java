@@ -41,9 +41,9 @@ public class Main {
 
         System.out.println(Arrays.toString(key));
 
-        //775
+        //988
 
-        decrypt(chdata, "filename.txt", new int[]{7, 7, 5});
+        decrypt(chdata, "filename.txt", new int[]{9, 6, 5});
 
 
     }
@@ -131,7 +131,8 @@ public class Main {
 
 
         String toStr = Arrays.toString(charToArray);
-        char[] toCharAgain = toStr.toCharArray();
+        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
+        char[] toCharAgain = replaceWeirdos.toCharArray();
         System.out.println(toCharAgain);
 
 
