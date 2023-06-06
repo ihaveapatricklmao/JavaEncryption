@@ -131,8 +131,7 @@ public class Main {
 
 
         String toStr = Arrays.toString(charToArray);
-        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
-        char[] toCharAgain = replaceWeirdos.toCharArray();
+        char[] toCharAgain = toStr.toCharArray();
         System.out.println(toCharAgain);
 
 
@@ -145,7 +144,7 @@ public class Main {
             System.out.println(key_value[count]);
             int curVal = toCharAgain[i];
 
-            toCharAgain[i] = (char) (curVal + key_value[count]);
+            toCharAgain[i] = (char) (curVal - key_value[count]);
 
         }
 
