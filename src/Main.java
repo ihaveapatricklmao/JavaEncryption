@@ -95,18 +95,25 @@ public class Main {
         char[] toCharAgain = replaceWeirdos.toCharArray();
 
         for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
-            //System.out.println(toCharAgain);
+
             if(count >= 3) {
                 count = 0;
             }
 
-            //System.out.println("count "+count);
             int curVal = toCharAgain[i];
-            //System.out.println(curVal);
+
             toCharAgain[i] = (char) (curVal + key[count]);
-            //System.out.println(key[count]);
+
         }
-        System.out.println(toCharAgain);
+
+        try {
+            FileWriter writeToFile = new FileWriter(file);
+            writeToFile.write(toCharAgain);
+            writeToFile.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 }
