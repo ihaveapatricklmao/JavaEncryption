@@ -8,9 +8,9 @@ public class Main {
 
     // variables to be used for the key
 
-    static int x = rand.nextInt(2, 10);
-    static int y = rand.nextInt(2, 10);
-    static int z = rand.nextInt(2, 10);
+    static int x = rand.nextInt(3, 10);
+    static int y = rand.nextInt(3, 10);
+    static int z = rand.nextInt(3, 10);
 
 
     static int[] key = {x, y, z};
@@ -73,8 +73,6 @@ public class Main {
             charList.add(ch);
         }
 
-
-        System.out.println(charList);
 
         return charList;
     }
