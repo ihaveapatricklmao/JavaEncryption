@@ -37,11 +37,13 @@ public class Main {
         List<Character> chdata = convertToChar(data);
 
         System.out.println(chdata);
-        encrypt(chdata, "filename.txt");
+        //encrypt(chdata, "filename.txt");
 
-        System.out.println(key[0]);
-        System.out.println(key[1]);
-        System.out.println(key[2]);
+        System.out.println(Arrays.toString(key));
+
+        //775
+
+        decrypt(chdata, "filename.txt", new int[]{7, 7, 5});
 
 
     }
@@ -91,6 +93,7 @@ public class Main {
         String toStr = Arrays.toString(charToArray);
         String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
         char[] toCharAgain = replaceWeirdos.toCharArray();
+        System.out.println(toCharAgain);
 
         for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
 
@@ -112,6 +115,47 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+
+    }
+
+
+    // decrypt method
+    public static void decrypt(List<Character> charArray, String file, int[] key_value) {
+
+        File fileToBeDecrypted = new File(file);
+
+        int count = 0;
+
+
+        Object[] charToArray = charArray.toArray();
+
+
+        String toStr = Arrays.toString(charToArray);
+        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
+        char[] toCharAgain = replaceWeirdos.toCharArray();
+        System.out.println(toCharAgain);
+
+
+        for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
+
+            if(count >= 3) {
+                count = 0;
+            }
+
+            System.out.println(key_value[count]);
+            int curVal = toCharAgain[i];
+
+            toCharAgain[i] = (char) (curVal + key_value[count]);
+
+        }
+
+        try {
+            FileWriter writeToFile = new FileWriter(fileToBeDecrypted);
+            writeToFile.write(toCharAgain);
+            writeToFile.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
