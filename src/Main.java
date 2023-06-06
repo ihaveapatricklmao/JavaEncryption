@@ -72,10 +72,7 @@ public class Main {
         for (char ch: strData.toCharArray()) {
             charList.add(ch);
         }
-        
-        charList.removeAll(Collections.singleton(','));
-        charList.removeAll(Collections.singleton('['));
-        charList.removeAll(Collections.singleton(']'));
+
 
         System.out.println(charList);
 
@@ -92,8 +89,10 @@ public class Main {
 
         Object[] charToArray = charArray.toArray();
 
+
         String toStr = Arrays.toString(charToArray);
-        char[] toCharAgain = toStr.toCharArray();
+        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
+        char[] toCharAgain = replaceWeirdos.toCharArray();
 
         for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
             //System.out.println(toCharAgain);
