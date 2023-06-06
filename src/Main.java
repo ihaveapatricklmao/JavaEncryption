@@ -36,14 +36,14 @@ public class Main {
 
         List<Character> chdata = convertToChar(data);
 
-        System.out.println(chdata);
+
         //encrypt(chdata, "filename.txt");
 
         System.out.println(Arrays.toString(key));
 
-        //988
+        //333
 
-        decrypt(chdata, "filename.txt", new int[]{9, 6, 5});
+        decrypt(chdata, "filename.txt", new int[]{3, 3, 3});
 
 
     }
@@ -86,25 +86,19 @@ public class Main {
 
         int count = 0;
 
+        char[] toCharAgain = new char[charArray.size()];
 
-        Object[] charToArray = charArray.toArray();
-
-
-        String toStr = Arrays.toString(charToArray);
-        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
-        char[] toCharAgain = replaceWeirdos.toCharArray();
-        System.out.println(toCharAgain);
-
-        for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
-
-            if(count >= 3) {
+        for (int i = 0; i < charArray.size(); i++, count++) {
+            if (count >= 3) {
                 count = 0;
             }
 
-            int curVal = toCharAgain[i];
+            char curVal = charArray.get(i);
+            if (curVal != ' ') {
+                curVal = (char) (curVal + key[count]);
+            }
 
-            toCharAgain[i] = (char) (curVal + key[count]);
-
+            toCharAgain[i] = curVal;
         }
 
         try {
@@ -114,39 +108,26 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
-
-    // decrypt method
     public static void decrypt(List<Character> charArray, String file, int[] key_value) {
-
         File fileToBeDecrypted = new File(file);
 
         int count = 0;
 
+        char[] toCharAgain = new char[charArray.size()];
 
-        Object[] charToArray = charArray.toArray();
-
-
-        String toStr = Arrays.toString(charToArray);
-        String replaceWeirdos = toStr.replaceAll("[\\[\\],\\s]", "");
-        char[] toCharAgain = replaceWeirdos.toCharArray();
-        System.out.println(toCharAgain);
-
-
-        for (int i = 0; i <= toCharAgain.length-1; i++, count++) {
-
-            if(count >= 3) {
+        for (int i = 0; i < charArray.size(); i++, count++) {
+            if (count >= 3) {
                 count = 0;
             }
 
-            System.out.println(key_value[count]);
-            int curVal = toCharAgain[i];
+            char curVal = charArray.get(i);
+            if (curVal != ' ') {
+                curVal = (char) (curVal - key_value[count]);
+            }
 
-            toCharAgain[i] = (char) (curVal - key_value[count]);
-
+            toCharAgain[i] = curVal;
         }
 
         try {
@@ -156,6 +137,5 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
