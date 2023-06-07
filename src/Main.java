@@ -17,34 +17,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // create file
-
-        File myObj = new File("filename.txt");
-
-        try {
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-
         Scanner userInp = new Scanner(System.in);
         System.out.println("Enter filename: ");
         String userResponse = userInp.nextLine();
 
         String data = getFileData(userResponse);
-
         List<Character> chdata = convertToChar(data);
 
-        //encrypt(chdata, "filename.txt");
 
+        Scanner encryptInp = new Scanner(System.in);
+        System.out.println("Do you want to \n 1) Encrypt the file \n 2) decrypt the file");
 
-        //decrypt(chdata, "filename.txt", new int[]{7, 5, 5});
+        String quesResponse = encryptInp.nextLine();
+
+        if (Objects.equals(quesResponse, "1")) {
+            encrypt(chdata, userResponse);
+        } else if (Objects.equals(quesResponse, "2")) {
+            Scanner getKeyQues = new Scanner(System.in);
+            System.out.println("What is the key? ");
+
+            String getKey = getKeyQues.nextLine();
+
+            String[] turnToArray = getKey.split("");
+            int[] turnToInt = new int[turnToArray.length];
+
+            for (int x = 0; x < turnToArray.length; x++) {
+                turnToInt[x] = Integer.parseInt(turnToArray[x]);
+            }
+            decrypt(chdata, userResponse, turnToInt);
+        }
 
 
     }
@@ -101,6 +102,8 @@ public class Main {
 
             toCharAgain[i] = curVal;
         }
+        System.out.println("The file has been encrypted!");
+        System.out.println("Your key is "+Arrays.toString(key));
 
         try {
             FileWriter writeToFile = new FileWriter(file);
@@ -130,6 +133,7 @@ public class Main {
 
             toCharAgain[i] = curVal;
         }
+        System.out.println("The file has been decrypted");
 
         try {
             FileWriter writeToFile = new FileWriter(fileToBeDecrypted);
