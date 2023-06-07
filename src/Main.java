@@ -32,15 +32,19 @@ public class Main {
             e.printStackTrace();
         }
 
-        String data = getFileData("filename.txt");
+
+        Scanner userInp = new Scanner(System.in);
+        System.out.println("Enter filename: ");
+        String userResponse = userInp.nextLine();
+
+        String data = getFileData(userResponse);
 
         List<Character> chdata = convertToChar(data);
-
 
         //encrypt(chdata, "filename.txt");
 
 
-        //decrypt(chdata, "filename.txt", new int[]{7, 6, 7});
+        //decrypt(chdata, "filename.txt", new int[]{7, 5, 5});
 
 
     }
