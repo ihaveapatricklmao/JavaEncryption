@@ -39,11 +39,8 @@ public class Main {
 
         //encrypt(chdata, "filename.txt");
 
-        System.out.println(Arrays.toString(key));
 
-        //333
-
-        decrypt(chdata, "filename.txt", new int[]{3, 3, 3});
+        //decrypt(chdata, "filename.txt", new int[]{7, 6, 7});
 
 
     }
